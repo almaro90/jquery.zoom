@@ -12,23 +12,48 @@
  *-----------------------------------------------------------------------------
  */
  	function cargarEventos(){
- 		$("#carga").hide();
+ 		//$("#carga").hide();
 		$(".zoom").click(function(){	
-			$("#carga").find("img").attr("src",$(this).find("img").attr("src"));		
-			$("#carga").toggle();			
+			//$("#carga").find("img").attr("src",$(this).find("img").attr("src"));		
+			$("#carga").toggle();
+			$("#galeria").toggle();			
+			$( "#galeria" ).animate({
+								    width: "100%",
+								    opacity: 0.5			  
+								  }, 800 );
 			$( "#carga" ).animate({
 								    width: "100%",
-								    opacity: 1,
-								    marginLeft: "0.6in",
-								    fontSize: "3em",
-								    borderWidth: "10px"
-								  }, 1500 );
+								    opacity: 1			  
+								  }, 800);
 		});
 
-		$("#carga").click(function(){			
+		$("#carga").click(function(){	
+			$( "#carga" ).animate({
+								    width: "0%",
+								    opacity: 0								   
+								  }, 800 );		
+			$( "#galeria" ).animate({
+								    width: "0%",
+								    opacity: 0								   
+								  }, 800 );					
 			$("#carga").toggle("slow");
+			$("#galeria").toggle("slow");
+			
 		});
 
+		$("#galeria").click(function(){	
+			$( "#carga" ).animate({
+								    width: "0%",
+								    opacity: 0								   
+								  }, 800 );			
+			$( "#galeria" ).animate({
+								    width: "0%",
+								    opacity: 0								   
+								  }, 800 );					
+			$("#carga").toggle("slow");
+			$("#galeria").toggle("slow");
+			
+		});
 	}
 
 
