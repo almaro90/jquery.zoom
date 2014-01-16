@@ -1,0 +1,46 @@
+<html>
+	<head>
+		<title>jquery.zoom</title>
+		<style type="text/css">
+			@import url(http://fonts.googleapis.com/css?family=Duru+Sans);
+			*{
+				font-family: 'Duru Sans', sans-serif;
+			}
+			body{
+				margin:auto;
+				margin-top: 50px;
+			}
+			.brick{
+				float:left;
+				cursor: pointer;
+				-webkit-transition:opacity 500ms;
+			}
+			.brick:hover{
+				opacity: 0.6;
+			}
+		</style>
+		<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" src="js/holder.js"></script>
+		<script type="text/javascript" src="js/zoom.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('#galeria').zoom();
+			});
+		</script>
+	</head>
+	<body>
+		<h1>jQuery Zoom</h1>
+		<div id="galeria">
+			<div class="brick"><img src="holder.js/200x300/sky"></div>
+			<div class="brick"><img src="holder.js/300x300/sky"></div>
+			<div class="brick"><img src="holder.js/300x200/sky"></div>
+			<div class="brick"><img src="holder.js/200x400/sky"></div>
+			<div class="brick"><img src="holder.js/200x300/sky"></div>
+			<div class="brick"><img src="holder.js/400x300/sky"></div>
+			<div class="brick"><img src="holder.js/250x350/sky"></div>
+			<div class="brick"><img src="holder.js/200x300/sky"></div>
+			<div class="brick"><img src="holder.js/250x500/sky"></div>
+		</div>
+	</body>
+</html>
+				
