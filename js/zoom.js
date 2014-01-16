@@ -10,49 +10,44 @@
  *				MI ZONA DE TRABAJO, BÚSCATE LA TUYA
  *
  *-----------------------------------------------------------------------------
- */
+ */var posTop = 0;
  	function cargarEventos(){
  		//$("#carga").hide();
-		$(".zoom").click(function(){	
-			//$("#carga").find("img").attr("src",$(this).find("img").attr("src"));		
+		$(".zoom").click(function(){
+			posTop = $(this).offset().top;
+		    $("body").prepend('<div id="zoom-background-black"></div>');
+			$("#carga").find("img").attr("src",$(this).find("img").attr("src"));
+			$("#carga").css({ top: posTop+"px" });
+			
 			$("#carga").toggle();
-			$("#galeria").toggle();			
-			$( "#galeria" ).animate({
-								    width: "100%",
-								    opacity: 0.5			  
-								  }, 800 );
+			
 			$( "#carga" ).animate({
 								    width: "100%",
-								    opacity: 1			  
-								  }, 800);
+								    opacity: 1,
+								    top: "-="+posTop	  
+								  }, 500);
 		});
 
 		$("#carga").click(function(){	
 			$( "#carga" ).animate({
 								    width: "0%",
-								    opacity: 0								   
-								  }, 800 );		
-			$( "#galeria" ).animate({
-								    width: "0%",
-								    opacity: 0								   
-								  }, 800 );					
-			$("#carga").toggle("slow");
-			$("#galeria").toggle("slow");
-			
+								    opacity: 0,
+								     top: "+="+posTop								   
+								  }, 300, function(){
+								  	$("#carga").toggle();
+									$("#zoom-background-black").remove();
+								  });
 		});
 
-		$("#galeria").click(function(){	
+		$("#zoom-background-black").click(function(){	
 			$( "#carga" ).animate({
 								    width: "0%",
-								    opacity: 0								   
-								  }, 800 );			
-			$( "#galeria" ).animate({
-								    width: "0%",
-								    opacity: 0								   
-								  }, 800 );					
-			$("#carga").toggle("slow");
-			$("#galeria").toggle("slow");
-			
+								    opacity: 0,
+								     top: "+="+posTop
+								  }, 300, function(){
+								  	$("#carga").toggle();
+									$("#zoom-background-black").remove();
+								  });			
 		});
 	}
 

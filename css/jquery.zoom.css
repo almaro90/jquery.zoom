@@ -1,5 +1,4 @@
-#galeria{
-	display: none;
+#zoom-background-black{	
 	position: absolute;
 	top: 0;	
 	z-index:5;	
@@ -18,9 +17,9 @@
 
 #carga {
 	display: none;
+	margin: auto;
 	text-align: center;
-	position: absolute;
-	top:-1px;	
+	position: absolute;	
 	z-index:5;			
 }
 
