@@ -1,14 +1,14 @@
 <html>
 	<head>
 		<title>jquery.zoom</title>
-		<style type="text/css">
-
-		</style>
+		 <link href="css/jquery.zoom.css" media="all" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 		<script type="text/javascript" src="js/zoom.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
-				alert('hola');
+				//alert('hola');
+				//cargo mis eventos :P
+				cargarEventos();
 			});
 		</script>
 	</head>
@@ -17,5 +17,25 @@
 		<div id="galeria">
 			
 		</div>
+
+		<!-- Esta parte de abajo es mía, bitch -->
+		<div id="contenedor" style="width:100%">
+			
+			<div id="zoom-container" style="width:20%">
+				<div class="zoom">
+					<img src="wtf.jpg" style="width:50%">
+				</div>
+			</div>				
+			
+			<div id="carga" style="width:0%">
+				<img src="" style="width:50%"/>
+			</div>	
+
+		</div>
+		
+		
+		
+		<!-- Hasta aquí -->
 	</body>
 </html>
+					

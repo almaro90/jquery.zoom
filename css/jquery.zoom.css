@@ -1,0 +1,24 @@
+#contenedor {
+	position: relative;
+	width: 100%;
+	height: 100%;
+
+}
+
+#zoom-container{
+	position: absolute;
+}
+
+#carga {
+	display: none;
+	text-align: center;
+	position: absolute;
+	z-index:5;	
+	background-color: red;
+	opacity: 0.5; 
+}
+
+#carga img{ 	
+	margin-left: auto;
+	opacity: 1;
+}
