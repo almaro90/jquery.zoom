@@ -13,29 +13,71 @@
  */
  var posTop = 0;
  var posLeft = 0;
+ var popTop = 0;
+
+ $.fn.centerToWindow = function()
+{
+  var obj           = $(this);
+  var obj_width     = $(this).outerWidth(true);
+  var obj_height    = $(this).outerHeight(true);
+  var window_width  = window.innerWidth ? window.innerWidth : $(window).width();
+  var window_height = window.innerHeight ? window.innerHeight : $(window).height();
+
+  obj.css({
+    "position" : "fixed",
+    "top"      : ((window_height / 2) - (obj_height / 2))+"px",
+    "left"     : ((window_width / 2) - (obj_width / 2))+"px"
+  });
+}
 
  	function cargarEventos(){
  		//$("#carga").hide();
-		$(".zoom").click(function(){
-			posTop = $(this).offset().top;
+		$(".zoom").click(function(){			
+			posTop  = $(this).offset().top;
 			posLeft = $(this).offset().left;
-			console.log(posLeft);
+			
+			tope =  ($(window).height()/2) - ($("#carga").height()/2);			
+			
+			
+
+
+
 		    $("body").prepend('<div id="zoom-background-black"></div>');
+
+		    $("#zoom-background-black").click(function(){	
+			$( "#carga" ).animate({
+								    width: "0%",
+								    opacity: 0,
+								     top: "+="+posTop,
+								     left: "+="+posLeft
+								  }, 300, function(){
+								  	$("#carga").toggle();
+									$("#zoom-background-black").remove();
+								  });			
+			});
+
 			$("#carga").find("img").attr("src",$(this).find("img").attr("src"));
 
 			
-			
-			$("#carga").css({ top: posTop+"px" });
+			//$("#zoom-background-black").css({top: tope+"px"});
+			$("#carga").css({ top: tope+"px" });
 			$("#carga").css({ left: posLeft+"px" });
+
 			
 			$("#carga").toggle();
-			
+			$("#carga").centerToWindow();
+			$("#zoom-background-black").centerToWindow();
+			$("#zoom-background-black").css({left: 0});
 			$( "#carga" ).animate({
 								    width: "100%",
 								    opacity: 1,
 								    top: "-="+posTop,
 								    left: "-="+posLeft	  
-								  }, 500);
+								  }, 1, function(){
+								  	$("#zoom-background-black").css({ width: "120%"});
+								  	$("#carga").centerToWindow();
+								  });
+
 		});
 
 		$("#carga").click(function(){	
@@ -49,19 +91,6 @@
 									$("#zoom-background-black").remove();
 								  });
 		});
-
-		$("#zoom-background-black").click(function(){	
-			$( "#carga" ).animate({
-								    width: "0%",
-								    opacity: 0,
-								     top: "+="+posTop,
-								     left: "+="+posLeft
-								  }, 300, function(){
-								  	$("#carga").toggle();
-									$("#zoom-background-black").remove();
-								  });			
-		});
-
 		
 	}
 
