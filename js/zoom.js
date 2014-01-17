@@ -108,3 +108,68 @@
  *
  *-----------------------------------------------------------------------------
  */
+
+jQuery.fn.zoom = function(options) {
+	content = $(this);
+	content.append('<div id="carga" style="width:0%"><img src="" /></div>');	
+
+		//$("#carga").hide();
+	content.children('.zoom').click(function(){	
+		$("body").css({ overflow: "hidden" });
+		fotoHeight = $(this).find("img").width();		
+		posTop  = $(this).offset().top;
+		posLeft = $(this).offset().left;
+		
+		tope =  ($(window).height()/2) - ($("#carga").height()/2);			
+
+	  $("body").prepend('<div id="zoom-background-black"></div>');
+
+	  $("#zoom-background-black").click(function(){	
+			$( "#carga" ).animate({
+							    width: "0%",
+							    opacity: 0,
+							     top: "+="+posTop-fotoHeight,
+							     left: "+="+posLeft
+							  }, 300, function(){
+							  	$("#carga").toggle();
+								$("#zoom-background-black").remove();
+							  });	
+			$("body").css({ overflow: "auto" });		
+		});
+
+		$("#carga").find("img").attr("src",$(this).find("img").attr("src"));
+
+		//$("#zoom-background-black").css({top: tope+"px"});
+		//$("#carga").css({ top: tope+"px" });
+		$("#carga").css({ left: posLeft+"px" });
+
+		
+		$("#carga").toggle();
+		$("#carga").centerToWindow();
+		$("#zoom-background-black").centerToWindow();
+		$("#zoom-background-black").css({left: 0});
+		$( "#carga" ).animate({
+							    width: "100%",
+							    opacity: 1,
+							    top: "-="+posTop-fotoHeight,
+							    left: "-="+posLeft	  
+							  }, 1, function(){
+							  	$("#zoom-background-black").css({ width: "120%"});
+							  	$("#carga").centerToWindow();
+							  });
+
+	});
+
+	$("#carga").click(function(){	
+		$( "#carga" ).animate({
+							    width: "0%",
+							    opacity: 0,
+							     top: "+="+posTop-fotoHeight,
+							     left: "+="+posLeft
+							  }, 300, function(){
+							  	$("#carga").toggle();
+								$("#zoom-background-black").remove();
+							  });
+		$("body").css({ overflow: "auto" });
+	});
+}

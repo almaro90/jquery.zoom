@@ -3,24 +3,22 @@
 	top: 0;	
 	z-index:5;	
 	opacity: 0.5;
-  	background: 5c6784;  	
+  	background: black;  	
   	height: 100%;
 }
 .zoom{
 	float: left;
+	width: 300px;
+}
+
+.zoom img{
+	width: 100%;
 }
 
 body{
 	margin:0;
 	padding: 0;	
 	
-}
-
-#contenedor {
-	position: relative;
-	width: 100%;
-	height: 90%;
-
 }
 
 #carga {
@@ -33,4 +31,6 @@ body{
 
 #carga img{ 	
 	margin-left: auto;	
+	width: 50%;
+	box-shadow: 0px 0px 50px 5px #888888;
 }
