@@ -32,7 +32,9 @@
 
  	function cargarEventos(){
  		//$("#carga").hide();
-		$(".zoom").click(function(){			
+		$(".zoom").click(function(){	
+			$("body").css({ overflow: "hidden" });
+			fotoHeight = $(this).find("img").width();		
 			posTop  = $(this).offset().top;
 			posLeft = $(this).offset().left;
 			
@@ -48,19 +50,20 @@
 			$( "#carga" ).animate({
 								    width: "0%",
 								    opacity: 0,
-								     top: "+="+posTop,
+								     top: "+="+posTop-fotoHeight,
 								     left: "+="+posLeft
 								  }, 300, function(){
 								  	$("#carga").toggle();
 									$("#zoom-background-black").remove();
-								  });			
+								  });	
+				$("body").css({ overflow: "auto" });		
 			});
 
 			$("#carga").find("img").attr("src",$(this).find("img").attr("src"));
 
 			
 			//$("#zoom-background-black").css({top: tope+"px"});
-			$("#carga").css({ top: tope+"px" });
+			//$("#carga").css({ top: tope+"px" });
 			$("#carga").css({ left: posLeft+"px" });
 
 			
@@ -71,7 +74,7 @@
 			$( "#carga" ).animate({
 								    width: "100%",
 								    opacity: 1,
-								    top: "-="+posTop,
+								    top: "-="+posTop-fotoHeight,
 								    left: "-="+posLeft	  
 								  }, 1, function(){
 								  	$("#zoom-background-black").css({ width: "120%"});
@@ -84,12 +87,13 @@
 			$( "#carga" ).animate({
 								    width: "0%",
 								    opacity: 0,
-								     top: "+="+posTop,
+								     top: "+="+posTop-fotoHeight,
 								     left: "+="+posLeft
 								  }, 300, function(){
 								  	$("#carga").toggle();
 									$("#zoom-background-black").remove();
 								  });
+			$("body").css({ overflow: "auto" });
 		});
 		
 	}
