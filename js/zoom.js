@@ -31,6 +31,8 @@
 }
 
  	function cargarEventos(){
+ 		$("#zoom-container").append('<div id="carga" style="width:0%"><img id="lupa" src="" style="width:50%"/></div>');	
+
  		//$("#carga").hide();
 		$(".zoom").click(function(){	
 			$("body").css({ overflow: "hidden" });
