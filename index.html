@@ -1,159 +1,129 @@
 <html>
-	<head>
-		<title>jquery.zoom</title>
-		<style type="text/css">
+<head>
+	<title>Zoom · jQuery Plugin</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<style type="text/css">
 		@import url(http://fonts.googleapis.com/css?family=Averia+Sans+Libre);
-			* {
-				font-family: 'Averia Sans Libre', cursive;
-			}
+		* {
+			font-family: 'Averia Sans Libre', cursive;
+		}
 
-			#contenedor {
-				width: 80%;
-				margin: auto;
-			}
-		</style>
-		<link href="css/jquery.zoom.css" media="all" rel="stylesheet" type="text/css" />
-		<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-		<script type="text/javascript" src="js/zoom.js"></script>		
-		<script type="text/javascript">
-			$(document).ready(function(){				
-				//cargarEventos();
-				$('#zoom-container').zoom();
-			});
-		</script>
-	</head>
-	<body>
-		<div id="contenedor">
-		<h1>jQuery Zoom</h1>		
+		h1, h3{
+			color: lightgrey;
+		}
 
-		<!-- Esta parte de abajo es mía, bitch -->
-		
-			
-			<div id="zoom-container">
+		html{
+			background: url(low.png);
+		}
 
-				<div class="zoom">
-					<img src="wtf.jpg">
-				</div>
+		#cuerpo {
+			padding-top: 50px;
+			width: 75%;
+			margin: auto;
+		}
 
-				<div class="zoom">
-					<img src="adventure.gif">
-				</div>
+		.zoom{
+			float: left;
+			margin:10px;
+		}
 
-				<div class="zoom">
-					<img src="time.png">
-				</div>
+		.zoom img{
+			max-width: 300px;
+			max-height: 150px;
+			border:2px white solid;
+		}
 
-				<div class="zoom">
-					<img src="wtf.jpg">
-				</div>
+		#gallery{
+			margin: auto;
+			text-align: center;
+		}
 
-				<div class="zoom">
-					<img src="adventure.gif">
-				</div>
+		#code{
+			background: white;
+			opacity: 0.7;
+			padding: 10px 20px;
+			border-radius: 5px;
+			width: 150px;
+		}
+	</style>
+	<link href="css/jquery.zoom.css" media="all" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="js/zoom.js"></script>		
+	<script type="text/javascript">
+		$(document).ready(function(){
 
-				<div class="zoom">
-					<img src="time.png">
-				</div>
-				<div class="zoom">
-					<img src="wtf.jpg">
-				</div>
+			$('#gallery').zoom();
 
-				<div class="zoom">
-					<img src="adventure.gif">
-				</div>
+		});
+	</script>
+</head>
+<body>
+	<div id="cuerpo">
+		<h1>jQuery Zoom</h1><h3> Test 1</h3>
+		<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;width:90%"><pre style="margin: 0; line-height: 125%">$(<span style="color: #007020">document</span>).ready(<span style="color: #008800; font-weight: bold">function</span>(){
 
-				<div class="zoom">
-					<img src="time.png">
-				</div>
+   $(<span style="background-color: #fff0f0">&#39;#gallery&#39;</span>).zoom();
 
-				<div class="zoom">
-					<img src="wtf.jpg">
-				</div>
+});
+</pre></div>
 
-				<div class="zoom">
-					<img src="adventure.gif">
-				</div>
-
-				<div class="zoom">
-					<img src="time.png">
-				</div>
-				
-				<div class="zoom">
-					<img src="time.png">
-				</div>
-
-				<div class="zoom">
-					<img src="wtf.jpg">
-				</div>
-
-				<div class="zoom">
-					<img src="adventure.gif">
-				</div>
-
-				<div class="zoom">
-					<img src="time.png">
-				</div>
-				
-				<div class="zoom">
-					<img src="time.png">
-				</div>
-
-				<div class="zoom">
-					<img src="wtf.jpg">
-				</div>
-
-				<div class="zoom">
-					<img src="adventure.gif">
-				</div>
-
-				<div class="zoom">
-					<img src="time.png">
-				</div>
-
-				<div class="zoom">
-					<img src="time.png">
-				</div>
-				
-				<div class="zoom">
-					<img src="time.png">
-				</div>
-
-				<div class="zoom">
-					<img src="wtf.jpg">
-				</div>
-
-				<div class="zoom">
-					<img src="adventure.gif">
-				</div>
-
-				<div class="zoom">
-					<img src="time.png">
-				</div>
-				
-				<div class="zoom">
-					<img src="time.png">
-				</div>
-
-				<div class="zoom">
-					<img src="wtf.jpg">
-				</div>
-
-				<div class="zoom">
-					<img src="adventure.gif">
-				</div>
-
-				<div class="zoom">
-					<img src="time.png">
-				</div>
-
-				<div class="zoom">
-					<img src="http://www.hdwallpapersarena.com/wp-content/uploads/2012/04/Best-Nature-Full-HD-Wallpapers31.jpg">
-				</div>
-
+		<div id="gallery">
+			<div class="zoom">
+				<img src="images/1.jpg">
+			</div>
+			<div class="zoom">
+				<img src="images/2.jpg">
+			</div>
+			<div class="zoom">
+				<img src="images/3.jpg">
+			</div>
+			<div class="zoom">
+				<img src="images/4.jpg">
+			</div>
+			<div class="zoom">
+				<img src="http://wallpoper.com/images/00/40/06/58/storm-troopers_00400658.png">
+			</div>
+			<div class="zoom">
+				<img src="images/5.jpg">
+			</div>
+			<div class="zoom">
+				<img src="images/1.jpg">
+			</div>
+			<div class="zoom">
+				<img src="images/2.jpg">
+			</div>
+			<div class="zoom">
+				<img src="images/3.jpg">
+			</div>
+			<div class="zoom">
+				<img src="http://wallpoper.com/images/00/40/06/58/storm-troopers_00400658.png">
+			</div>
+			<div class="zoom">
+				<img src="images/4.jpg">
+			</div>
+			<div class="zoom">
+				<img src="images/5.jpg">
+			</div>
+			<div class="zoom">
+				<img src="images/1.jpg">
+			</div>
+			<div class="zoom">
+				<img src="http://wallpoper.com/images/00/40/06/58/storm-troopers_00400658.png">
+			</div>
+			<div class="zoom">
+				<img src="images/2.jpg">
+			</div>
+			<div class="zoom">
+				<img src="images/3.jpg">
+			</div>
+			<div class="zoom">
+				<img src="images/4.jpg">
+			</div>
+			<div class="zoom">
+				<img src="http://wallpoper.com/images/00/40/06/58/storm-troopers_00400658.png">
+			</div>
 		</div>
+		<a href="https://github.com/almaro90/jquery.zoom"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
 	</div>
-		
-		<!-- Hasta aquí -->
-	</body>
+</body>
 </html>
-					
