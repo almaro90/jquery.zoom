@@ -8,6 +8,11 @@
 			font-family: 'Averia Sans Libre', cursive;
 		}
 
+		h1 {
+			font-size: 5em;
+			margin-top: 0px;
+		}
+
 		h1, h3{
 			color: lightgrey;
 		}
@@ -17,7 +22,7 @@
 		}
 
 		#cuerpo {
-			padding-top: 50px;
+			padding-top: 10px;
 			width: 75%;
 			margin: auto;
 		}
@@ -45,6 +50,35 @@
 			border-radius: 5px;
 			width: 150px;
 		}
+
+		.button {
+			color: #fff;
+			background-color: #428bca;
+			border-color: #357ebd;
+			border-radius: 4px;
+			border:1px solid transparent;
+			display: inline-block;
+			padding: 6px 12px;
+			margin-bottom: 0;
+			font-size: 14px;
+			font-weight: normal;
+			line-height: 1.428571429;
+			text-align: center;
+			white-space: nowrap;
+			vertical-align: middle;
+			cursor: pointer;
+			background-image: none;
+			border: 1px solid transparent;
+			border-radius: 4px;
+			text-decoration: none;
+		}
+
+		.button:hover {
+			text-decoration: none;
+			color: #fff;
+			background-color: #3276b1;
+			border-color: #285e8e;
+		}
 	</style>
 	<link href="css/jquery.zoom.css" media="all" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
@@ -59,12 +93,36 @@
 </head>
 <body>
 	<div id="cuerpo">
-		<h1>jQuery Zoom</h1><h3> Test 1</h3>
-		<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;width:90%"><pre style="margin: 0; line-height: 125%">$(<span style="color: #007020">document</span>).ready(<span style="color: #008800; font-weight: bold">function</span>(){
+		<h1>jQuery Zoom</h1>
+		<a href="https://raw.github.com/almaro90/jquery.zoom/master/js/zoom.js" class="button">Download the .JS</a>
+		<h3>Javascript on document ready:</h3>
+		<div style="background: rgba(0,0,0,0.2); overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">$</span><span style="color: #f8f8f2">(document).</span><span style="color: #a6e22e">ready</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
 
-   $(<span style="background-color: #fff0f0">&#39;#gallery&#39;</span>).zoom();
+   <span style="color: #a6e22e">$</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;#gallery&#39;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">zoom</span><span style="color: #f8f8f2">();</span>
 
-});
+<span style="color: #f8f8f2">});</span>
+</pre></div>
+
+		<h3>Your html:</h3>
+		<div style="background:rgba(0,0,0,0.2); overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">&lt;html&gt;</span>
+  <span style="color: #f92672">&lt;head&gt;</span>
+    <span style="color: #f92672">&lt;link</span> <span style="color: #a6e22e">href=</span><span style="color: #e6db74">&quot;css/jquery.zoom.css&quot;</span> <span style="color: #a6e22e">type=</span><span style="color: #e6db74">&quot;text/css&quot;</span> <span style="color: #f92672">/&gt;</span>
+    <span style="color: #f92672">&lt;script </span><span style="color: #a6e22e">type=</span><span style="color: #e6db74">&quot;text/javascript&quot;</span> <span style="color: #a6e22e">src=</span><span style="color: #e6db74">&quot;js/jquery.min.js&quot;</span><span style="color: #f92672">&gt;&lt;/script&gt;</span>
+    <span style="color: #f92672">&lt;script </span><span style="color: #a6e22e">type=</span><span style="color: #e6db74">&quot;text/javascript&quot;</span> <span style="color: #a6e22e">src=</span><span style="color: #e6db74">&quot;js/zoom.js&quot;</span><span style="color: #f92672">&gt;&lt;/script&gt;</span>	
+  <span style="color: #f92672">&lt;/head&gt;</span>
+  <span style="color: #f92672">&lt;body&gt;</span>
+    <span style="color: #f92672">&lt;div</span> <span style="color: #a6e22e">id=</span><span style="color: #e6db74">&quot;gallery&quot;</span><span style="color: #f92672">&gt;</span>
+       <span style="color: #f92672">&lt;div</span> <span style="color: #a6e22e">class=</span><span style="color: #e6db74">&quot;zoom&quot;</span><span style="color: #f92672">&gt;</span>
+         <span style="color: #f92672">&lt;img</span> <span style="color: #a6e22e">src=</span><span style="color: #e6db74">&quot;images/1.jpg&quot;</span> <span style="color: #f92672">/&gt;</span>
+       <span style="color: #f92672">&lt;/div&gt;</span>
+       <span style="color: #f92672">&lt;div</span> <span style="color: #a6e22e">class=</span><span style="color: #e6db74">&quot;zoom&quot;</span><span style="color: #f92672">&gt;</span>
+         <span style="color: #f92672">&lt;img</span> <span style="color: #a6e22e">src=</span><span style="color: #e6db74">&quot;images/2.jpg&quot;</span> <span style="color: #f92672">/&gt;</span>
+       <span style="color: #f92672">&lt;/div&gt;</span>
+       <span style="color: #f92672">&lt;div</span> <span style="color: #a6e22e">class=</span><span style="color: #e6db74">&quot;zoom&quot;</span><span style="color: #f92672">&gt;</span>
+         <span style="color: #f92672">&lt;img</span> <span style="color: #a6e22e">src=</span><span style="color: #e6db74">&quot;images/3.jpg&quot;</span> <span style="color: #f92672">/&gt;</span>
+       <span style="color: #f92672">&lt;/div&gt;</span>
+
+       ...
 </pre></div>
 
 		<div id="gallery">
