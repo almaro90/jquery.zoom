@@ -14,6 +14,8 @@
  var posTop = 0;
  var posLeft = 0;
  var popTop = 0;
+ var top= 0;
+ var left= 0;
 
  $.fn.centerToWindow = function()
 {
@@ -28,6 +30,17 @@
     "top"      : ((window_height / 2) - (obj_height / 2))+"px",
     "left"     : ((window_width / 2) - (obj_width / 2))+"px"
   });
+}
+
+function recargarPosiciones(objeto){
+	var pos_obj           = objeto;
+  var pos_obj_width     = objeto.outerWidth(true);
+  var pos_obj_height    = objeto.outerHeight(true);
+  var pos_window_width  = window.innerWidth ? window.innerWidth : $(window).width();
+  var pos_window_height = window.innerHeight ? window.innerHeight : $(window).height();
+ 
+  top = ((pos_window_height / 2) - (pos_obj_height / 2))+"px";
+  left = ((pos_window_width / 2) - (pos_obj_width / 2))+"px";
 }
 
 
@@ -46,7 +59,7 @@ jQuery.fn.zoom = function(options) {
 
 		//$("#carga").hide();
 	content.find('img').click(function(){
-	$("#zoom-background-black").toggle();
+	$("#zoom-background-black").fadeToggle();
 	$("#zoom-foreground-event").toggle();
 	$("#zoom-foreground-event").unbind();	
 	$("body").css({ overflow: "hidden" });
@@ -60,12 +73,12 @@ jQuery.fn.zoom = function(options) {
 		$( "#carga" ).animate({
 						    width: "0%",
 						    opacity: 0,
-						     top: "+="+posTop-fotoHeight,
-						     left: "+="+posLeft
+						     top: "+="+top,
+						     left: "+="+left
 						  }, 300, function(){
 						  	$("#carga").toggle();
 						  	$("#zoom-foreground-event").toggle();
-								$("#zoom-background-black").toggle();							
+								$("#zoom-background-black").fadeToggle();							
 						  });	
 		$("body").css({ overflow: "auto" });		
 	});
@@ -75,18 +88,20 @@ jQuery.fn.zoom = function(options) {
 	//$("#zoom-background-black").css({top: tope+"px"});
 	//$("#carga").css({ top: tope+"px" });
 	$("#carga").css({ left: posLeft+"px" });
+	$("#carga").css({ top: posTop+"px" });
 	
 	$("#carga").toggle();
-	$("#carga").centerToWindow();
+	//$("#carga").centerToWindow();(
+		recargarPosiciones($(this).find('img'));
 	$("#zoom-background-black").centerToWindow();
 	$("#zoom-foreground-event").centerToWindow();
 	$("#zoom-background-black").css({left: 0});
 	$( "#carga" ).animate({
 						    width: "100%",
 						    opacity: 1,
-						    top: "-="+posTop-fotoHeight,
-						    left: "-="+posLeft	  
-						  }, 1, function(){
+						    top: "-="+top,
+						    left: "-="+left	  
+						  }, 900, function(){
 						  	$("#zoom-background-black").css({ width: "120%"});
 						  	$("#carga").centerToWindow();
 						  });
