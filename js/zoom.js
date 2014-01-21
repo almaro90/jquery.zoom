@@ -87,23 +87,32 @@ jQuery.fn.zoom = function(options) {
 
 	$("#carga").css({ width: "100%" });
 	$("#carga img").css({ width: "100%" });
-	finTop = Math.max(0, (($(window).height() - $("#carga").outerHeight()) / 2) +
-												$(window).scrollTop()/2);
+	var toa = $(window).height() / 2 - $("#carga").find('img').outerHeight();
+	/*console.log("windows.height(): "+$(window).height());
+	console.log("imgaen outerHeight: "+$("#carga").find('img').outerHeight());
+	console.log("offset: "+$(this).parent().offset().top);
+	console.log("outblack: "+$("#zoom-background-black").outerHeight());*/
+
+	finTop =  ((($("#zoom-background-black").outerHeight() - $("#carga").find('img').outerHeight()) / 2) + $(window).scrollTop());
+	var res = (($("#zoom-background-black").outerHeight() - $("#carga").outerHeight()) / 2);
+	
+	console.log("black outerHeight: "+$("#zoom-background-black").outerHeight());	
+	console.log("carga outer: "+$("#carga").find('img').outerHeight());							
 	finLeft =  $(this).parent().getLeftCenter();
-	console.log($(window).height());
+	console.log(res);
+	console.log($(window).scrollTop());
 	$("#carga").css({ width: "300px" });
 
 	$("#carga img").css({ width: $(this).width() });
 	$("#carga img").css({ minHeight: $(this).height() });
 	$("#carga img").css({ height: $(this).height() });
 	
-
+	
 
 	$("#carga").css({ visibility: "visible" });
 	//$("#carga").css({ position: "fixed" });
 	$("#zoom-background-black").css({ top: $(document).scrollTop() });
-	console.log("top: "+finTop);
-	console.log("left: "+finLeft);
+	
 
 	//$("#zoom-background-black").css({ left: $(this).getLeftCenter+"px"});
 
@@ -123,7 +132,7 @@ jQuery.fn.zoom = function(options) {
 	$( "#carga" ).animate({	
 							position: "absolute",
 						    width: "100%",	    
-						    top:  "finTop",
+						    top:  finTop,
 						    left: 0						   
 						  }, 900, function(){
 						  	$("#zoom-background-black").css({ width: "120%"});						  	
