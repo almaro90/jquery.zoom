@@ -73,10 +73,6 @@ jQuery.fn.zoom = function(options) {
 	});
 
 	$("#carga").find("img").attr("src",$(this).attr("src"));
-	
-	
-	
-
 
 	// Volvemos a poner el div carga a su estado original para situarlo encima de la imagen
 	// ahora colocamos el div con el tamaño y posición encima del div pinchado
@@ -87,41 +83,21 @@ jQuery.fn.zoom = function(options) {
 
 	$("#carga").css({ width: "100%" });
 	$("#carga img").css({ width: "100%" });
-	var toa = $(window).height() / 2 - $("#carga").find('img').outerHeight();
-	/*console.log("windows.height(): "+$(window).height());
-	console.log("imgaen outerHeight: "+$("#carga").find('img').outerHeight());
-	console.log("offset: "+$(this).parent().offset().top);
-	console.log("outblack: "+$("#zoom-background-black").outerHeight());*/
 
 	finTop =  ((($("#zoom-background-black").outerHeight() - $("#carga").find('img').outerHeight()) / 2) + $(window).scrollTop());
-	var res = (($("#zoom-background-black").outerHeight() - $("#carga").outerHeight()) / 2);
-	
-	console.log("black outerHeight: "+$("#zoom-background-black").outerHeight());	
-	console.log("carga outer: "+$("#carga").find('img').outerHeight());							
 	finLeft =  $(this).parent().getLeftCenter();
-	console.log(res);
-	console.log($(window).scrollTop());
+	
+	/* obtener este valor al principio y parametrizarlo */
 	$("#carga").css({ width: "300px" });
-
 	$("#carga img").css({ width: $(this).width() });
 	$("#carga img").css({ minHeight: $(this).height() });
 	$("#carga img").css({ height: $(this).height() });
 	
-	
 
 	$("#carga").css({ visibility: "visible" });
-	//$("#carga").css({ position: "fixed" });
 	$("#zoom-background-black").css({ top: $(document).scrollTop() });
-	
-
-	//$("#zoom-background-black").css({ left: $(this).getLeftCenter+"px"});
-
-
 	$("#zoom-foreground-event").css({ top: $(document).scrollTop() });
-	//$("#zoom-foreground-event").css({ left: $(this).getLeftCenter+"px"});
-
 	$("#zoom-background-black").css({left: 0});
-
 
 	// Animáción del Div CARGA y de la IMAGEN
 	
