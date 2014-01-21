@@ -11,100 +11,122 @@
  *
  *-----------------------------------------------------------------------------
  */
- var posTop = 0;
- var posLeft = 0;
- var popTop = 0;
- var top= 0;
- var left= 0;
+ // variables con las posiciones iniciales del div
+ // las usaremos tanto para mostrar la primera vez el div de carga y empezar su animación
+ // como para que cuando esté recogiendo el div termine en esa posición.
+ var iniTop = 0;
+ var iniLeft = 0; 
 
- $.fn.centerToWindow = function()
-{
-  var obj           = $(this);
-  var obj_width     = $(this).outerWidth(true);
+ // variables con las posiciones finales del div
+ var finTop = 0;
+ var finLeft = 0;
+
+
+$.fn.getTopCenter = function(){
+  var obj           = $(this);  
   var obj_height    = $(this).outerHeight(true);
-  var window_width  = window.innerWidth ? window.innerWidth : $(window).width();
-  var window_height = window.innerHeight ? window.innerHeight : $(window).height();
-
-  obj.css({
-    "position" : "fixed",
-    "top"      : ((window_height / 2) - (obj_height / 2))+"px",
-    "left"     : ((window_width / 2) - (obj_width / 2))+"px"
-  });
-}
-
-function recargarPosiciones(objeto){
-	var pos_obj           = objeto;
-  var pos_obj_width     = objeto.outerWidth(true);
-  var pos_obj_height    = objeto.outerHeight(true);
-  var pos_window_width  = window.innerWidth ? window.innerWidth : $(window).width();
-  var pos_window_height = window.innerHeight ? window.innerHeight : $(window).height();
- 
-  top = ((pos_window_height / 2) - (pos_obj_height / 2))+"px";
-  left = ((pos_window_width / 2) - (pos_obj_width / 2))+"px";
+    var window_height = window.innerHeight ? window.innerHeight : $(window).height();
+  return ((window_height / 2) - (obj_height / 2));
 }
 
 
-/*-----------------------------------------------------------------------------
- *
- *							TRABAJA A PARTIR DE AQUÍ
- *
- *-----------------------------------------------------------------------------
- */
+$.fn.getLeftCenter = function(){
+  var obj           = $(this);
+  var obj_width     = $(this).outerWidth(true); 
+  var window_width  = window.innerWidth ? window.innerWidth : $(window).width(); 
+  return ((window_width / 2) - (obj_width / 2));
+}
+
 
 jQuery.fn.zoom = function(options) {
 	content = $(this);
-	content.append('<div id="carga" style="width:0%"><img src="" /></div>');	
+	content.append('<div id="carga"><img src="" /></div>');	
   $("body").prepend('<div id="zoom-background-black" style="display:none"></div>');
   $("body").prepend('<div id="zoom-foreground-event" style="display:none"></div>');
 
-		//$("#carga").hide();
+
 	content.find('img').click(function(){
 	$("#zoom-background-black").fadeToggle();
 	$("#zoom-foreground-event").toggle();
 	$("#zoom-foreground-event").unbind();	
 	$("body").css({ overflow: "hidden" });
-	fotoHeight = $(this).find("img").width();		
-	posTop  = $(this).offset().top;
-	posLeft = $(this).offset().left;
-		
-	tope =  ($(window).height()/2) - ($("#carga").height()/2);			
+	 iniTop = $(this).parent().offset().top;
+	 iniLeft = $(this).parent().offset().left;	
+	
 
   $("#zoom-foreground-event").click(function(){	
-		$( "#carga" ).animate({
-						    width: "0%",
-						    opacity: 0,
-						     top: "+="+top,
-						     left: "+="+left
-						  }, 300, function(){
-						  	$("#carga").toggle();
+  		$("#carga img").animate({
+							 width: "300px",
+							 minHeight: "150px"
+							},400)	;	
+
+		$( "#carga" ).animate({						    					   
+						     visibility: "hidden",
+						     top: iniTop,
+						     left: iniLeft
+						  }, 400, function(){
+						  	$("#carga").css({ visibility: "hidden" });
 						  	$("#zoom-foreground-event").toggle();
-								$("#zoom-background-black").fadeToggle();							
+							$("#zoom-background-black").fadeToggle();							
 						  });	
 		$("body").css({ overflow: "auto" });		
 	});
 
 	$("#carga").find("img").attr("src",$(this).attr("src"));
-
-	//$("#zoom-background-black").css({top: tope+"px"});
-	//$("#carga").css({ top: tope+"px" });
-	$("#carga").css({ left: posLeft+"px" });
-	$("#carga").css({ top: posTop+"px" });
 	
-	$("#carga").toggle();
-	//$("#carga").centerToWindow();(
-		recargarPosiciones($(this).find('img'));
-	$("#zoom-background-black").centerToWindow();
-	$("#zoom-foreground-event").centerToWindow();
-	$("#zoom-background-black").css({left: 0});
-	$( "#carga" ).animate({
-						    width: "100%",
-						    opacity: 1,
-						    top: "-="+top,
-						    left: "-="+left	  
-						  }, 900, function(){
-						  	$("#zoom-background-black").css({ width: "120%"});
-						  	$("#carga").centerToWindow();
-						  });
+	
+	
 
+
+	// Volvemos a poner el div carga a su estado original para situarlo encima de la imagen
+	// ahora colocamos el div con el tamaño y posición encima del div pinchado
+	// luego lo animaremos para colocarlo en medio de la pantalla
+	$("#carga").css({ width: "0px" });
+	$("#carga").css({ top: iniTop+"px" });
+	$("#carga").css({ left: iniLeft+"px" });	
+
+	$("#carga").css({ width: "100%" });
+	$("#carga img").css({ width: "100%" });
+	finTop = Math.max(0, (($(window).height() - $("#carga").outerHeight()) / 2) +
+												$(window).scrollTop()/2);
+	finLeft =  $(this).parent().getLeftCenter();
+	console.log($(window).height());
+	$("#carga").css({ width: "300px" });
+
+	$("#carga img").css({ width: $(this).width() });
+	$("#carga img").css({ minHeight: $(this).height() });
+	$("#carga img").css({ height: $(this).height() });
+	
+
+
+	$("#carga").css({ visibility: "visible" });
+	//$("#carga").css({ position: "fixed" });
+	$("#zoom-background-black").css({ top: $(document).scrollTop() });
+	console.log("top: "+finTop);
+	console.log("left: "+finLeft);
+
+	//$("#zoom-background-black").css({ left: $(this).getLeftCenter+"px"});
+
+
+	$("#zoom-foreground-event").css({ top: $(document).scrollTop() });
+	//$("#zoom-foreground-event").css({ left: $(this).getLeftCenter+"px"});
+
+	$("#zoom-background-black").css({left: 0});
+
+
+	// Animáción del Div CARGA y de la IMAGEN
+	
+	$("#carga img").animate({
+							 width: "50%",
+							 minHeight: "400px"
+							},900)	;	
+	$( "#carga" ).animate({	
+							position: "absolute",
+						    width: "100%",	    
+						    top:  "finTop",
+						    left: 0						   
+						  }, 900, function(){
+						  	$("#zoom-background-black").css({ width: "120%"});						  	
+						  });
 	});
 }
