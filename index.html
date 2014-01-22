@@ -23,7 +23,7 @@
 
 		#cuerpo {
 			padding-top: 10px;
-			width: 75%;
+			width: 80%;
 			margin: auto;
 		}
 
@@ -39,16 +39,11 @@
 		}
 
 		#gallery{
-			margin: auto;
-			text-align: center;
+			
 		}
 
 		#code{
-			background: white;
-			opacity: 0.7;
-			padding: 10px 20px;
-			border-radius: 5px;
-			width: 150px;
+			margin-right: 10px;
 		}
 
 		.button {
@@ -68,9 +63,11 @@
 			vertical-align: middle;
 			cursor: pointer;
 			background-image: none;
-			border: 1px solid transparent;
-			border-radius: 4px;
 			text-decoration: none;
+		}
+
+		.flotante{
+			float:left;
 		}
 
 		.button:hover {
@@ -86,7 +83,7 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 
-			$('#gallery').zoom();
+			$('#cuerpo').zoom();
 
 		});
 	</script>
@@ -94,8 +91,9 @@
 <body>
 	<div id="cuerpo">
 		<h1>jQuery Zoom</h1>
-		<a href="https://raw.github.com/almaro90/jquery.zoom/master/js/zoom.js" class="button">Download the .JS</a>
-		<a href="https://github.com/almaro90/jquery.zoom" class="button">Project on Github</a>
+		<div id="code" class="flotante">
+		<a href="https://raw.github.com/almaro90/jquery.zoom/master/js/zoom.js" target="_blank" class="button">Download the .JS</a>
+		<a href="https://github.com/almaro90/jquery.zoom" target="_blank" class="button">Project on Github</a>
 		<h3>Javascript on document ready:</h3>
 		<div style="background: rgba(0,0,0,0.2); overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">$</span><span style="color: #f8f8f2">(document).</span><span style="color: #a6e22e">ready</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
 
@@ -125,8 +123,8 @@
 
        ...
 </pre></div>
-
-		<div id="gallery">
+</div>
+		
 			<div class="zoom">
 				<img src="images/1.jpg">
 			</div>
@@ -146,6 +144,9 @@
 				<img src="images/5.jpg">
 			</div>
 			<div class="zoom">
+				<img src="http://wallpoper.com/images/00/40/06/58/storm-troopers_00400658.png">
+			</div>
+			<div class="zoom">
 				<img src="images/1.jpg">
 			</div>
 			<div class="zoom">
@@ -176,12 +177,9 @@
 				<img src="images/3.jpg">
 			</div>
 			<div class="zoom">
-				<img src="images/4.jpg">
-			</div>
-			<div class="zoom">
 				<img src="http://wallpoper.com/images/00/40/06/58/storm-troopers_00400658.png">
 			</div>
-		</div>
+		
 		<a href="https://github.com/almaro90/jquery.zoom"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
 	</div>
 </body>
