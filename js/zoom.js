@@ -37,6 +37,19 @@ jQuery.fn.zoom = function(options) {
 	$("body").append('<div id="carga"></div>');	
   $('body').prepend('<div id="zoom-background-black" style="display:none; width:120%"></div>');
   //$("body").prepend('<div id="zoom-foreground-event" style="display:none"></div>');
+	
+  //Se aqui se coloca el thumbnail para los enlaces de youtube
+	content.find('.zoomyt').each(function(key){ 
+		$(this).attr('src', 'http://img.youtube.com/vi/'+$(this).attr('alt')+'/mqdefault.jpg');
+  });
+
+	//Aqui se asigna igualmente para Vimeo, pero tenemos que acceder a los mediante JSON
+  content.find('.zoomvm').each(function(key){
+		var nu = $(this);
+		$.getJSON( "http://vimeo.com/api/v2/video/"+nu.attr('alt')+".json", function( data ) {
+			nu.attr('src', data[0].thumbnail_medium);
+		});
+  });
 
 	content.find('img').click(function(){
 	imageen = '<img src="" />';
@@ -52,12 +65,19 @@ jQuery.fn.zoom = function(options) {
 	iniLeft = $(this).parent().offset().left;
 	$("#carga").css({ height: "100%" });
 
-	if($(this).parent().find('img').attr('src').indexOf('youtube') != -1){
+	if($(this).parent().find('img').hasClass('zoomyt')){
 		$('#carga').append(videeo);
 		$("#carga iframe").attr('src', '');
-		$("#carga iframe").attr("src",$(this).attr("alt"));
+		$("#carga iframe").attr("src","http://www.youtube.com/embed/"+$(this).attr("alt"));
 		$("#carga iframe").css('height','');
-	} else {
+	} else if($(this).parent().find('img').hasClass('zoomvm')){
+//http://vimeo.com/api/v2/video/70431153.json
+//http://player.vimeo.com/video/84420787
+		$('#carga').append(videeo);
+		$("#carga iframe").attr('src', '');
+		$("#carga iframe").attr("src","http://player.vimeo.com/video/"+$(this).attr("alt"));
+		$("#carga iframe").css('height','');
+	}else {
 		$('#carga').append(imageen);
 		$("#carga img").attr('src', '');
 		$("#carga img").attr("src",$(this).attr("src"));
