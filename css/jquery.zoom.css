@@ -8,8 +8,8 @@
 }
 
 #carga {
-	display: none;
-	margin: auto;
+	visibility: hidden;
+	margin: 0;
 	text-align: center;
 	position: absolute;	
 	z-index:59;	
@@ -19,9 +19,9 @@
 #carga img{ 	
 	margin-left: auto;
 	height: 70%;
-	min-height: 400px;
-	margin-top: 7%;
-	box-shadow: 0px 0px 50px 5px #888888;
+	/*width: 100%;*/
+	/*min-height: 400px;*/
+	/*margin-top: 7%;*/
 }
 
 #zoom-foreground-event{
