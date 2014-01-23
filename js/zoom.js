@@ -1,95 +1,109 @@
 /**
  * https://github.com/almaro90/jquery.zoom
  * Version : 1.00.A
- * By Almaro90 & Queque 
+ * By almaro90, queque, tankeman
  * License : GPL v3 
  */
 
-/*-----------------------------------------------------------------------------
- *
- *				MI ZONA DE TRABAJO, BÚSCATE LA TUYA
- *
- *-----------------------------------------------------------------------------
- */
- var posTop = 0;
- var posLeft = 0;
- var popTop = 0;
+ // variables con las posiciones iniciales del div
+ // las usaremos tanto para mostrar la primera vez el div de carga y empezar su animación
+ // como para que cuando esté recogiendo el div termine en esa posición.
+ var iniTop = 0;
+ var iniLeft = 0; 
+ 
+ var iniWidth = 0;
+ var iniHeight = 0;
 
- $.fn.centerToWindow = function()
-{
-  var obj           = $(this);
-  var obj_width     = $(this).outerWidth(true);
+ // variables con las posiciones finales del div
+ var finTop = 0;
+ var finLeft = 0;
+
+$.fn.getTopCenter = function(){
+  var obj           = $(this);  
   var obj_height    = $(this).outerHeight(true);
-  var window_width  = window.innerWidth ? window.innerWidth : $(window).width();
-  var window_height = window.innerHeight ? window.innerHeight : $(window).height();
+    var window_height = window.innerHeight ? window.innerHeight : $(window).height();
+  return ((window_height / 2) - (obj_height / 2));
+};
 
-  obj.css({
-    "position" : "fixed",
-    "top"      : ((window_height / 2) - (obj_height / 2))+"px",
-    "left"     : ((window_width / 2) - (obj_width / 2))+"px"
-  });
-}
-
-
-/*-----------------------------------------------------------------------------
- *
- *							TRABAJA A PARTIR DE AQUÍ
- *
- *-----------------------------------------------------------------------------
- */
+$.fn.getLeftCenter = function(){
+  var obj           = $(this);
+  var obj_width     = $(this).outerWidth(true); 
+  var window_width  = window.innerWidth ? window.innerWidth : $(window).width(); 
+  return ((window_width / 2) - (obj_width / 2));
+};
 
 jQuery.fn.zoom = function(options) {
 	content = $(this);
-	content.append('<div id="carga" style="width:0%"><img src="" /></div>');	
-  $("body").prepend('<div id="zoom-background-black" style="display:none"></div>');
+	$("body").append('<div id="carga"><img src="" /></div>');	
+  $("body").prepend('<div id="zoom-background-black" style="display:none; width:120%"></div>');
   $("body").prepend('<div id="zoom-foreground-event" style="display:none"></div>');
 
-		//$("#carga").hide();
 	content.find('img').click(function(){
-	$("#zoom-background-black").toggle();
+	$("#zoom-background-black").fadeToggle();
 	$("#zoom-foreground-event").toggle();
 	$("#zoom-foreground-event").unbind();	
 	$("body").css({ overflow: "hidden" });
-	fotoHeight = $(this).find("img").width();		
-	posTop  = $(this).offset().top;
-	posLeft = $(this).offset().left;
-		
-	tope =  ($(window).height()/2) - ($("#carga").height()/2);			
+	imgWi = $(this).outerWidth() / 2;
+	iniWidth = $(this).parent().find('img').width();
+	iniHeight = $(this).parent().find('img').height();
+	iniTop = $(this).parent().offset().top;
+	iniLeft = $(this).parent().offset().left;
+	$("#carga").css({ height: "100%" });
+	$("#carga img").attr('src', '');
+	$("#carga").find("img").attr("src",$(this).attr("src"));
+	$("#carga img").css('height','');	
 
   $("#zoom-foreground-event").click(function(){	
-		$( "#carga" ).animate({
-						    width: "0%",
-						    opacity: 0,
-						     top: "+="+posTop-fotoHeight,
-						     left: "+="+posLeft
-						  }, 300, function(){
-						  	$("#carga").toggle();
-						  	$("#zoom-foreground-event").toggle();
-								$("#zoom-background-black").toggle();							
-						  });	
+		$("#carga img").animate({
+			height:iniHeight							 
+		},400)	;	
+
+		$( "#carga" ).animate({											
+									visibility: "hidden",
+									width:iniWidth,
+									top: iniTop,
+									left: iniLeft
+								}, 400, function(){
+								$("#carga").css({ visibility: "hidden" });
+								$("#zoom-foreground-event").toggle();
+							$("#zoom-background-black").fadeToggle();							
+							});
+
 		$("body").css({ overflow: "auto" });		
 	});
 
-	$("#carga").find("img").attr("src",$(this).attr("src"));
+	// Volvemos a poner el div carga a su estado original para situarlo encima de la imagen
+	// ahora colocamos el div con el tamaño y posición encima del div pinchado
+	// luego lo animaremos para colocarlo en medio de la pantalla
+	$("#carga").css({ width: "0%" });
+	$("#carga").css({ top: iniTop+"px" });
+	$("#carga").css({ left: iniLeft+"px" });	
 
-	//$("#zoom-background-black").css({top: tope+"px"});
-	//$("#carga").css({ top: tope+"px" });
-	$("#carga").css({ left: posLeft+"px" });
+	$("#carga").css({ width: "100%" });
+
+	finTop =  ((($("#zoom-background-black").outerHeight() - $("#carga").find('img').outerHeight()) / 2) + $(window).scrollTop());
+	finLeft =  $(this).parent().getLeftCenter();
+	$('#carga img').css({ height: iniHeight });
+
+	/* obtener este valor al principio y parametrizarlo */
+	$("#carga").css({ width: iniWidth });
 	
-	$("#carga").toggle();
-	$("#carga").centerToWindow();
-	$("#zoom-background-black").centerToWindow();
-	$("#zoom-foreground-event").centerToWindow();
+	$("#carga").css({ visibility: "visible" });
+	$("#zoom-background-black").css({ top: $(document).scrollTop() });
+	$("#zoom-foreground-event").css({ top: $(document).scrollTop() });
 	$("#zoom-background-black").css({left: 0});
-	$( "#carga" ).animate({
-						    width: "100%",
-						    opacity: 1,
-						    top: "-="+posTop-fotoHeight,
-						    left: "-="+posLeft	  
-						  }, 1, function(){
-						  	$("#zoom-background-black").css({ width: "120%"});
-						  	$("#carga").centerToWindow();
-						  });
 
+	// Animáción del Div CARGA y de la IMAGEN
+	
+	$("#carga img").animate({
+							height: "70%"
+							},400)	;	
+	$( "#carga" ).animate({	
+							position: "absolute",
+							width: "100%",
+							top:  finTop,
+							left: 0						
+							},400);
 	});
-}
+console.log($(this).parent().find('img').css('min-height'));
+};
