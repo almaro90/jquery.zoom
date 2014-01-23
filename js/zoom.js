@@ -44,7 +44,7 @@ jQuery.fn.zoom = function(options) {
 	$("#zoom-background-black").fadeToggle();
 	//$("#zoom-foreground-event").toggle();
 	//$("#zoom-foreground-event").unbind();	
-	$("body").css({ overflow: "hidden" });
+	$("html").css({ overflow: "hidden" });
 	imgWi = $(this).outerWidth() / 2;
 	iniWidth = $(this).parent().find('img').width();
 	iniHeight = $(this).parent().find('img').height();
@@ -76,12 +76,12 @@ jQuery.fn.zoom = function(options) {
 										top: iniTop,
 										left: iniLeft
 									}, 400, function(){
-									$("#carga").css({ visibility: "hidden" });
+									$("#carga").css({ visibility: "hidden", height: "0" });
 									//$("#zoom-foreground-event").toggle();
 									$("#zoom-background-black").fadeToggle();
-									$('#carga').children().remove();							
-								});
-			$("body").css({ overflow: "auto" });		
+									$('#carga').children().remove();								
+									$("html").css({ overflow: "auto" });
+								});	
 		}
 	});
 
@@ -100,7 +100,7 @@ jQuery.fn.zoom = function(options) {
 
 	/* obtener este valor al principio y parametrizarlo */
 	$("#carga").css({ width: iniWidth });
-	
+	//$('#carga').css('max-height', $(window).height() - $(window).scrollTop());
 	$("#carga").css({ visibility: "visible" });
 	$("#zoom-background-black").css({ top: $(document).scrollTop() });
 	$("#zoom-foreground-event").css({ top: $(document).scrollTop() });
