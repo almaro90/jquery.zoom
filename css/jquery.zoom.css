@@ -18,7 +18,9 @@
 
 #carga img, iframe{ 	
 	margin-left: auto;
+	margin-top: 5px;
 	height: 70%;
+	box-shadow: 0 0 20px 5px white;
 	/*width: 100%;*/
 	/*min-height: 400px;*/
 	/*margin-top: 7%;*/

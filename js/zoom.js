@@ -71,8 +71,6 @@ jQuery.fn.zoom = function(options) {
 		$("#carga iframe").attr("src","http://www.youtube.com/embed/"+$(this).attr("alt"));
 		$("#carga iframe").css('height','');
 	} else if($(this).parent().find('img').hasClass('zoomvm')){
-//http://vimeo.com/api/v2/video/70431153.json
-//http://player.vimeo.com/video/84420787
 		$('#carga').append(videeo);
 		$("#carga iframe").attr('src', '');
 		$("#carga iframe").attr("src","http://player.vimeo.com/video/"+$(this).attr("alt"));
