@@ -1,11 +1,13 @@
 jquery.zoom
 ===========
 
-Plugin jQuery para hacer zoom a una imagen. O.o
+Plugin jQuery para hacer zoom.
+Soporta imagenes, videos (YouTube y Vimeo).
+
 
 [Aqui](http://almaro90.github.io/jquery.zoom/) la página y demo del plugin.
 
-## Desarrolladores ##
+### Desarrolladores ###
 
 + [queque](http://github.com/queque)
 + [tankeman](http://github.com/tankeman)
