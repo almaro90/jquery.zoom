@@ -1,0 +1,15 @@
+{
+  "name": "zoom",
+  "version": "0.0.2",
+  "homepage": "http://almaro90.github.io/jquery.zoom",
+  "author": {
+    "name": "Alvaro Mara",
+    "site": "https://github.com/almaro90"},
+  "license": [ {"type": "GPLv3"} ],
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-contrib-uglify": "*"
+  },
+  "scripts": {},
+  "engines": {}
+}
